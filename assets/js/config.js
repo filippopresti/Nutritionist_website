@@ -62,7 +62,7 @@ window.SITE = {
     accessKey: "ad17b918-e076-4cbd-a1e8-d76feafced43",
 
     // Oggetto dell'email che arriva nella casella dello studio
-    oggetto: "Nuova richiesta di appuntamento dal sito",
+    oggetto: "‼️ Nuova richiesta di consulenza dal sito!",
 
     /* hCaptcha — protezione anti-spam del modulo.
        Questa è la chiave sito pubblica condivisa di Web3Forms: va nel codice
