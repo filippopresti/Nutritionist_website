@@ -142,7 +142,6 @@
       '<nav class="flex flex-1 flex-col px-5 pb-10 pt-4" aria-label="Navigazione mobile">' + linkMobile +
       '<a href="' + S.contatti.whatsappUrl + '" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-ocra px-6 py-3.5 font-semibold text-verde-950">' +
       '<span class="h-5 w-5">' + ICONE.whatsapp + "</span>Scrivimi su WhatsApp</a>" +
-      '<p class="mt-6 text-sm text-verde-200">' + esc(S.contatti.telefono) + "</p>" +
       "</nav></div>"
     );
   }
