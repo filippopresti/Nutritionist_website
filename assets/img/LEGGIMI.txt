@@ -1,0 +1,37 @@
+Cartella delle fotografie del sito.
+
+── STATO ──────────────────────────────────────────────────────────────
+valentina.jpg            961x1200 · ~200 KB · versione usata dal sito
+valentina-originale.jpg  1440x1798 · ~500 KB · originale, non toccato
+
+La foto della dott.ssa Sanzeni alla scrivania e' gia' collegata e
+compare in due punti:
+  • homepage, sezione "Ciao! Sono la dott.ssa Sanzeni Valentina"
+  • pagina "Su di me"
+
+Proporzioni 4:5, identiche a quelle del riquadro: l'immagine entra
+intera, senza ritagli.
+───────────────────────────────────────────────────────────────────────
+
+PERCHE' DUE FILE
+valentina.jpg e' l'originale ridimensionato e ricompresso per il web:
+pesa il 60% in meno e si carica molto piu' in fretta da telefono, senza
+differenze visibili a schermo. valentina-originale.jpg resta come copia
+di sicurezza a piena risoluzione: se serve rifare il ritaglio o
+stamparla, si parte da li'.
+
+PER SOSTITUIRE LA FOTO
+Basta rimpiazzare valentina.jpg con un altro file dallo stesso nome.
+Formato consigliato: JPEG verticale 4:5 (es. 960x1200), sotto i 250 KB.
+
+PER AGGIUNGERE ALTRE IMMAGINI
+I percorsi si indicano in assets/js/config.js, sezione `immagini`:
+
+  immagini: {
+    hero:     "",                          // sfondo homepage (ora decorativo)
+    ritratto: "assets/img/valentina.jpg",  // homepage
+    studio:   "assets/img/valentina.jpg",  // pagina "Su di me"
+  },
+
+Se un file manca, al suo posto compare uno sfondo decorativo verde:
+non si vedono mai immagini rotte.

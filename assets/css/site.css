@@ -1,0 +1,155 @@
+/* =============================================================
+   site.css — solo ciò che Tailwind non copre.
+   Tutto il resto è fatto con classi utility Tailwind.
+   ============================================================= */
+
+:root {
+  --verde-900: #0f2c23;
+  --verde-700: #1f5541;
+  --verde-100: #ddede4;
+  --crema: #fbf8f3;
+  --ocra: #c6913f;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+/* Focus visibile e coerente su tutta l'interfaccia (accessibilità) */
+:focus-visible {
+  outline: 2px solid var(--ocra);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Rivelazione al scroll (progressive enhancement) ---------- */
+/* Senza JS gli elementi restano visibili: la classe .reveal viene
+   attivata solo se main.js gira. */
+.js .reveal { opacity: 0; transform: translateY(20px); }
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1);
+}
+.js .reveal.d1.is-visible { transition-delay: .08s; }
+.js .reveal.d2.is-visible { transition-delay: .16s; }
+.js .reveal.d3.is-visible { transition-delay: .24s; }
+.js .reveal.d4.is-visible { transition-delay: .32s; }
+
+/* ---------- Texture di sfondo (nessuna immagine richiesta) ---------- */
+.bg-foglie {
+  background-color: var(--crema);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 8% 0%, rgba(60,133,104,.10), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 100% 20%, rgba(198,145,63,.10), transparent 60%);
+}
+
+/* Hero. La foto è opzionale: se `immagini.hero` in config.js è vuoto
+   resta questo sfondo decorativo, senza immagini mancanti. */
+.hero-media {
+  background-color: #123f31;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 78% 20%, rgba(62,156,125,.35), transparent 65%),
+    radial-gradient(ellipse 55% 50% at 12% 95%, rgba(198,145,63,.18), transparent 60%),
+    linear-gradient(150deg, #0b2b21 0%, #143f32 55%, #1c5442 100%);
+  background-size: cover;
+  background-position: center;
+}
+.foto-segnaposto {
+  background-color: #ddede4;
+  background-image:
+    linear-gradient(160deg, rgba(31,85,65,.16), rgba(198,145,63,.14)),
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.7), transparent 55%);
+}
+/* Applicata da main.js quando una foto è configurata */
+.ha-foto { background-size: cover; background-position: center; background-repeat: no-repeat; }
+
+/* ---------- Tipografia dei contenuti lunghi (pagine legali) ---------- */
+.testo-legale h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--verde-900);
+  margin: 2.5rem 0 .75rem;
+}
+.testo-legale h3 {
+  font-weight: 600;
+  color: var(--verde-700);
+  margin: 1.75rem 0 .5rem;
+}
+.testo-legale p,
+.testo-legale li { color: #5d6763; line-height: 1.8; }
+.testo-legale p { margin-bottom: 1rem; }
+.testo-legale ul { list-style: disc; padding-left: 1.35rem; margin-bottom: 1rem; }
+.testo-legale ol { list-style: decimal; padding-left: 1.35rem; margin-bottom: 1rem; }
+.testo-legale li { margin-bottom: .4rem; }
+.testo-legale a { color: var(--verde-700); text-decoration: underline; text-underline-offset: 3px; }
+.testo-legale strong { color: var(--verde-900); font-weight: 600; }
+.testo-legale table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .9rem; }
+.testo-legale th, .testo-legale td {
+  border: 1px solid #e3ddd2; padding: .6rem .75rem; text-align: left; vertical-align: top;
+}
+.testo-legale th { background: #f6f2ea; color: var(--verde-900); font-weight: 600; }
+
+/* Riquadro "da completare prima della pubblicazione" */
+.nota-editoriale {
+  border-left: 3px solid var(--ocra);
+  background: #fdf7ec;
+  padding: 1rem 1.25rem;
+  border-radius: 0 .5rem .5rem 0;
+  font-size: .9rem;
+  color: #6b5a3a;
+  margin: 1.5rem 0;
+}
+
+/* ---------- Campo telefono (intl-tel-input) ---------- */
+/* La libreria porta il proprio CSS: qui la si allinea al resto del modulo. */
+.iti { display: block; width: 100%; }
+.iti__flag-container { border-radius: .75rem 0 0 .75rem; }
+.iti--separate-dial-code .iti__selected-flag {
+  background-color: #f1e9dd;
+  border-radius: .75rem 0 0 .75rem;
+  padding-left: 1rem;
+}
+.iti--separate-dial-code .iti__selected-dial-code {
+  font-size: .95rem;
+  color: #0f2c23;
+}
+.iti__country-list {
+  border: 1px solid #ddede4;
+  border-radius: .75rem;
+  box-shadow: 0 18px 45px -15px rgba(15, 44, 35, .28);
+  font-size: .9rem;
+  max-width: min(22rem, 88vw);
+}
+.iti__country.iti__highlight { background-color: #f2f7f4; }
+.iti__divider { border-bottom-color: #ddede4; }
+
+/* ---------- hCaptcha ---------- */
+/* Il widget ha larghezza fissa (~303px): su schermi stretti viene scalato
+   in modo che non sbordi mai dal riquadro del modulo. */
+.captcha-riquadro { min-height: 78px; }
+.captcha-riquadro iframe { border-radius: .5rem; }
+@media (max-width: 380px) {
+  .captcha-riquadro .h-captcha {
+    transform: scale(.86);
+    transform-origin: 0 0;
+  }
+  .captcha-riquadro { min-height: 68px; }
+}
+
+/* ---------- Menu mobile ---------- */
+body.menu-aperto { overflow: hidden; }
+
+/* ---------- Accordion (dettagli) ---------- */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chevron { transform: rotate(180deg); }
+.chevron { transition: transform .3s ease; }
