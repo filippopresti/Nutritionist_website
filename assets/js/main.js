@@ -96,6 +96,33 @@
       );
     }).join("");
 
+    return (
+      '<header class="sticky top-0 z-50 border-b border-verde-100/70 bg-crema/90 backdrop-blur-md">' +
+      '<div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">' +
+      logo(false) +
+      '<nav class="hidden items-center gap-9 md:flex" aria-label="Navigazione principale">' +
+      linkDesktop +
+      '<a href="contatti.html" class="rounded-full bg-verde-700 px-6 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:bg-verde-800 hover:shadow-lift">Contattami</a>' +
+      "</nav>" +
+      '<button type="button" id="apri-menu" class="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-verde-800 md:hidden" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile">' +
+      '<svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
+      "</button></div></header>"
+    );
+  }
+
+  /* ---------------------------------------------------------------
+     Componente: pannello del menu mobile
+
+     Va montato come figlio diretto di <body>, MAI dentro <header>:
+     l'header usa `backdrop-blur`, e una proprieta' di filtro crea un
+     "containing block" per i discendenti in position:fixed. Dentro
+     l'header, `inset-0` si calcolerebbe sui suoi 80px di altezza
+     invece che sullo schermo, e il pannello coprirebbe solo la fascia
+     superiore lasciando intravedere la pagina sotto.
+     --------------------------------------------------------------- */
+  function menuMobilePannello() {
+    var corrente = paginaCorrente();
+
     var linkMobile = PAGINE.map(function (p, i) {
       var attivo = p.href === corrente;
       return (
@@ -107,28 +134,16 @@
     }).join("");
 
     return (
-      '<header class="sticky top-0 z-50 border-b border-verde-100/70 bg-crema/90 backdrop-blur-md">' +
-      '<div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">' +
-      logo(false) +
-      '<nav class="hidden items-center gap-9 md:flex" aria-label="Navigazione principale">' +
-      linkDesktop +
-      '<a href="contatti.html" class="rounded-full bg-verde-700 px-6 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:bg-verde-800 hover:shadow-lift">Contattami</a>' +
-      "</nav>" +
-      '<button type="button" id="apri-menu" class="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-verde-800 md:hidden" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile">' +
-      '<svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
-      "</button></div>" +
-
-      /* pannello mobile */
-      '<div id="menu-mobile" class="invisible fixed inset-0 z-50 flex flex-col bg-verde-900 opacity-0 transition-all duration-300 md:hidden" role="dialog" aria-modal="true" aria-label="Menu di navigazione">' +
-      '<div class="flex h-20 items-center justify-between px-5">' + logo(true, "w-40") +
+      '<div id="menu-mobile" class="invisible fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-verde-900 opacity-0 transition-all duration-300 md:hidden" role="dialog" aria-modal="true" aria-label="Menu di navigazione">' +
+      '<div class="flex h-20 shrink-0 items-center justify-between px-5">' + logo(true, "w-40") +
       '<button type="button" id="chiudi-menu" class="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-white" aria-label="Chiudi il menu">' +
       '<svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>' +
       "</button></div>" +
-      '<nav class="flex flex-1 flex-col px-5 pt-4" aria-label="Navigazione mobile">' + linkMobile +
+      '<nav class="flex flex-1 flex-col px-5 pb-10 pt-4" aria-label="Navigazione mobile">' + linkMobile +
       '<a href="' + S.contatti.whatsappUrl + '" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-ocra px-6 py-3.5 font-semibold text-verde-950">' +
       '<span class="h-5 w-5">' + ICONE.whatsapp + "</span>Scrivimi su WhatsApp</a>" +
       '<p class="mt-6 text-sm text-verde-200">' + esc(S.contatti.telefono) + "</p>" +
-      "</nav></div></header>"
+      "</nav></div>"
     );
   }
 
@@ -209,6 +224,9 @@
     var slotFooter = document.querySelector("[data-footer]");
     if (slotHeader) slotHeader.outerHTML = header();
     if (slotFooter) slotFooter.outerHTML = footer();
+
+    // Fuori dall'header, altrimenti il backdrop-blur lo intrappola (vedi sopra)
+    document.body.insertAdjacentHTML("beforeend", menuMobilePannello());
     document.body.insertAdjacentHTML("beforeend", bannerCookie());
 
     // Segnaposto testuali riempiti da config.js

@@ -48,14 +48,37 @@ Poi apri <http://localhost:8811>.
 | --- | --- |
 | Telefono, email, WhatsApp | ✅ già inseriti (dal brief) |
 | Partita IVA | ✅ già inserita |
-| **Indirizzo dello studio** | ❌ **da inserire** — ora è `Via da definire, 00` |
-| `studio.mapsQuery` | ❌ da aggiornare con l'indirizzo reale (usato da mappa e pulsante Maps) |
+| Indirizzo dello studio | ✅ Via Giuseppina, 21 — 26100 Cremona (CR) |
 | `studio.orari` | ⚠️ testo generico, da confermare |
-| Link social (Facebook, Instagram, LinkedIn) | ❌ da inserire — finché sono vuoti le icone non compaiono |
+| Link social (Facebook, Instagram, LinkedIn) | ✅ inseriti |
+| Logo | ✅ marchio ufficiale, due varianti (vedi sotto) |
 | Foto della dott.ssa (homepage + Su di me) | ✅ inserita e collegata |
 | `immagini.hero` (sfondo homepage) | ❌ opzionale — ora sfondo decorativo |
 
-### 2. Fotografie
+### 2. Logo
+
+Il marchio ufficiale è in `assets/img/`, in due varianti generate dallo stesso
+file originale:
+
+| File | Colore | Dove |
+| --- | --- | --- |
+| `logo.svg` | verde scuro `#0F2C23` | header, su fondo crema |
+| `logo-chiaro.svg` | crema `#FBF8F3` | footer e menu mobile, su fondo verde |
+
+Servono due file perché un SVG caricato con `<img>` non eredita il colore del
+testo della pagina: il colore deve essere già dentro al file.
+
+Rispetto all'originale ho tolto il rettangolo di sfondo (così il logo poggia
+sul fondo della pagina invece che su un riquadro bianco), ritagliato la tela
+sull'ingombro reale del testo — da 850×550 a 672×182, proporzioni 3,69:1 — e
+ridotto la precisione delle curve a un decimale: −22% di peso, nessuna
+differenza visibile nemmeno ingrandendo.
+
+**Per sostituire il logo in futuro** basta rimpiazzare i due file mantenendo
+gli stessi nomi e proporzioni simili. Se cambia molto la forma, vanno riviste
+le larghezze in `main.js`, funzione `logo()`.
+
+### 3. Fotografie
 
 Le foto sono **facoltative**: se non impostate, il sito mostra sfondi decorativi
 al posto loro (nessuna immagine rotta). Per aggiungerle:
@@ -71,7 +94,7 @@ immagini: {
 },
 ```
 
-### 3. Modulo di richiesta appuntamento — ✅ già funzionante
+### 4. Modulo di richiesta appuntamento — ✅ già funzionante
 
 Il modulo nella pagina Info invia tramite **Web3Forms**, che recapita la
 richiesta alla casella Gmail dello studio. Endpoint e chiave sono in `config.js`
@@ -117,18 +140,32 @@ Da valutare con il consulente privacy: Web3Forms tratta i dati dei visitatori
 per conto dello studio, quindi serve un accordo di responsabile del trattamento
 (DPA) — il servizio lo mette a disposizione. È già citato nella Privacy Policy.
 
-### 4. Testi legali
+### 5. Testi legali
 
-`privacy.html`, `cookie.html` e `termini.html` sono **basi redazionali complete
-ma generiche**. Ogni pagina contiene riquadri gialli intitolati *«Nota per il
-titolare del sito»* con l'elenco dei punti da compilare (fornitore di hosting,
-tempi di conservazione, condizioni di disdetta, foro competente…).
+Le tre pagine sono **pubblicate e internamente coerenti**: non contengono più
+segnaposto né note redazionali. Dove un dato non era noto, la clausola è stata
+formulata in modo veritiero e generale invece di lasciare uno spazio vuoto.
 
-**Vanno lette e validate da un avvocato o da un consulente privacy prima della
-pubblicazione, e i riquadri gialli vanno rimossi.** Il sito tratta dati
-sanitari nell'ambito dell'attività professionale: non è un adempimento formale.
+**Restano comunque da validare da un avvocato o da un consulente privacy.** Il
+sito tratta dati sanitari nell'ambito dell'attività professionale: non è un
+adempimento formale.
 
-### 5. Cookie e contenuti di terze parti
+#### Clausole da precisare quando la dott.ssa fornisce i dati
+
+Oggi il testo rimanda genericamente a quanto comunicato «in sede di visita».
+Sostituire con i valori reali migliora la trasparenza verso il paziente:
+
+| Documento | Sezione | Da precisare |
+| --- | --- | --- |
+| Privacy | §7 | Termine di conservazione delle cartelle nutrizionali |
+| Termini | §6 | Ore di preavviso richieste per la disdetta |
+| Termini | §6 | Conseguenze della mancata presentazione senza preavviso |
+| Termini | §7 | Modalità di pagamento accettate |
+
+Non sono invece rimasti buchi: il foro competente segue la regola di legge del
+consumatore, e l'hosting è indicato (GitHub, Inc. — GitHub Pages).
+
+### 6. Cookie e contenuti di terze parti
 
 - Il banner blocca **Google Maps** finché l'utente non dà il consenso: al suo posto
   compare un segnaposto con un pulsante «Carica la mappa». Questo è il
@@ -145,7 +182,7 @@ sanitari nell'ambito dell'attività professionale: non è un adempimento formale
   - la libreria `intl-tel-input` (caricata da jsDelivr nella pagina Info) può
     essere scaricata e servita dal proprio dominio allo stesso modo.
 
-### 6. Tailwind: dal CDN al CSS compilato
+### 7. Tailwind: dal CDN al CSS compilato
 
 Il CDN di Tailwind (`cdn.tailwindcss.com`) è pensato per prototipi: compila gli
 stili nel browser a ogni caricamento. Per la versione pubblica conviene generare
@@ -190,3 +227,28 @@ Prima di pubblicare, verifica che:
 Da aggiungere quando il dominio è noto: `robots.txt`, `sitemap.xml`, tag
 canonical e i dati strutturati Schema.org (`LocalBusiness` / `Nutritionist`),
 utili per comparire nelle ricerche locali su Cremona.
+
+---
+
+## Cache degli asset (`?v=`)
+
+CSS e JavaScript sono richiamati con un numero di versione:
+
+```html
+<script src="assets/js/main.js?v=20260905"></script>
+```
+
+Serve perché GitHub Pages e i browser mettono in cache gli asset a lungo: senza
+questo parametro, chi ha già visitato il sito continuerebbe a usare la versione
+vecchia di `main.js` anche dopo un aggiornamento, e vedrebbe il sito rotto o
+con i vecchi contenuti.
+
+**Dopo ogni modifica a `main.js`, `config.js`, `tw.js` o `site.css`, cambia il
+numero in tutte le pagine.** In una riga:
+
+```bash
+cd ~/Desktop/sito-valentina-sanzeni && sed -i '' "s/?v=[0-9]\{8\}/?v=$(date +%Y%m%d)/g" *.html
+```
+
+Le immagini non hanno il parametro: quando cambiano, di norma cambia anche il
+nome del file.

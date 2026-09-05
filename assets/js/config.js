@@ -59,10 +59,7 @@ window.SITE = {
 
        QUI NON VANNO MAI chiavi private, password o token di altri servizi. */
     endpoint: "https://api.web3forms.com/submit",
-    // ⚠️ TEST IN CORSO — chiave temporanea di Filippo, per verificare la consegna.
-    // Chiave definitiva della dott.ssa Sanzeni, da ripristinare a test concluso:
-    // "ad17b918-e076-4cbd-a1e8-d76feafced43"
-    accessKey: "c72628da-b263-46aa-bfbc-5a348a60a41a",
+    accessKey: "ad17b918-e076-4cbd-a1e8-d76feafced43",
 
     // Oggetto dell'email che arriva nella casella dello studio
     oggetto: "Nuova richiesta di appuntamento dal sito",
