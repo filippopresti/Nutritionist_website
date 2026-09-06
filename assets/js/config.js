@@ -42,8 +42,8 @@ window.SITE = {
      al posto della foto (nessun'immagine rotta, nessun errore 404). */
   immagini: {
     hero: "",                                 // sfondo della homepage (nessuna foto: resta lo sfondo decorativo)
-    ritratto: "assets/img/valentina.jpg",     // homepage, sezione "Ciao! Sono la dott.ssa..."
-    studio: "assets/img/valentina-about-me.jpg",       // pagina "Su di me"
+    ritratto: "assets/img/valentina.png",     // homepage, sezione "Ciao! Sono la dott.ssa..."
+    studio: "assets/img/valentina-about-me.png",       // pagina "Su di me"
   },
 
   form: {
