@@ -135,7 +135,7 @@
 
     return (
       '<div id="menu-mobile" class="invisible fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-verde-900 opacity-0 transition-all duration-300 md:hidden" role="dialog" aria-modal="true" aria-label="Menu di navigazione">' +
-      '<div class="flex h-20 shrink-0 items-center justify-between px-5">' + logo(true) +
+      '<div class="flex h-20 shrink-0 items-center justify-between px-5">' + logo(true, w-44) +
       '<button type="button" id="chiudi-menu" class="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-white" aria-label="Chiudi il menu">' +
       '<svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>' +
       "</button></div>" +
