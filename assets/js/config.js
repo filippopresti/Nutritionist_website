@@ -43,7 +43,7 @@ window.SITE = {
   immagini: {
     hero: "",                                 // sfondo della homepage (nessuna foto: resta lo sfondo decorativo)
     ritratto: "assets/img/valentina.jpg",     // homepage, sezione "Ciao! Sono la dott.ssa..."
-    studio: "assets/img/valentina.jpg",       // pagina "Su di me"
+    studio: "assets/img/valentina-about-me.jpg",       // pagina "Su di me"
   },
 
   form: {
