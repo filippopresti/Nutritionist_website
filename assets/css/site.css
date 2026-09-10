@@ -56,9 +56,7 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 .hero-media {
   background-color: #123f31;
   background-image:
-    radial-gradient(ellipse 70% 60% at 78% 20%, rgba(62,156,125,.35), transparent 65%),
-    radial-gradient(ellipse 55% 50% at 12% 95%, rgba(198,145,63,.18), transparent 60%),
-    linear-gradient(150deg, #0b2b21 0%, #143f32 55%, #1c5442 100%);
+    radial-gradient(ellipse 70% 60% at 78% 20%, rgba(62, 156, 125, .35), transparent 65%), radial-gradient(ellipse 55% 55% at 16% 88%, rgba(62, 156, 125, 0.35), transparent 50%), linear-gradient(150deg, #0b2b21 0%, #143f32 55%, #1c5442 100%);
   background-size: cover;
   background-position: center;
 }
