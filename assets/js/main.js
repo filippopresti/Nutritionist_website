@@ -185,7 +185,7 @@
       '<li><a href="tel:' + esc(S.contatti.telefonoIntl) + '" class="flex items-center gap-3 text-verde-200/85 transition hover:text-ocra-light"><span class="h-4 w-4 shrink-0">' + ICONE.telefono + "</span>" + esc(S.contatti.telefono) + "</a></li>" +
       '<li><a href="mailto:' + esc(S.contatti.email) + '" class="flex items-start gap-3 break-all text-verde-200/85 transition hover:text-ocra-light"><span class="mt-0.5 h-4 w-4 shrink-0">' + ICONE.mail + "</span>" + esc(S.contatti.email) + "</a></li>" +
       '<li><a href="' + S.contatti.whatsappUrl + '" target="_blank" rel="noopener" class="flex items-center gap-3 text-verde-200/85 transition hover:text-ocra-light"><span class="h-4 w-4 shrink-0">' + ICONE.whatsapp + "</span>WhatsApp</a></li>" +
-      '<li><a data-href="maps" href="#" target="_blank" rel="noopener" class="flex items-center gap-3 text-verde-200/85 transition hover:text-ocra-light><span class="mt-0.5 h-4 w-4 shrink-0">' + ICONE.posizione + "</span>" + esc(S.studio.indirizzoCompleto) + "</a></li>" +
+      '<li><a data-href="maps" href="#" target="_blank" rel="noopener" class="flex items-center gap-3 text-verde-200/85 transition hover:text-ocra-light"><span class="mt-0.5 h-4 w-4 shrink-0">' + ICONE.posizione + "</span>" + esc(S.studio.indirizzoCompleto) + "</a></li>" +
       "</ul></div></div>" +
 
       '<div class="mt-14 flex flex-col gap-4 border-t border-verde-800 pt-8 text-xs text-verde-200/70 sm:flex-row sm:items-center sm:justify-between">' +
